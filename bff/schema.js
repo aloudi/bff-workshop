@@ -22,7 +22,7 @@ const typeDefs = gql`
   }
 
   type District {
-    id: String,
+    districtId: String,
     name: String,
   }
 

@@ -37,13 +37,19 @@ export type Customer = {
   jobBatched: Maybe<Job>;
 };
 
+export type District = {
+  __typename?: 'District';
+  districtId: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+};
+
 export type Driver = {
   __typename?: 'Driver';
   name: Maybe<Scalars['String']>;
   unitId: Maybe<Scalars['String']>;
   equipment: Maybe<Scalars['String']>;
   emails: Maybe<Array<Maybe<Scalars['String']>>>;
-  districts: Maybe<Array<Maybe<Scalars['String']>>>;
+  districts: Maybe<Array<Maybe<District>>>;
 };
 
 export type TripCollapsedItem = {
@@ -126,6 +132,10 @@ export type TripsQuery = (
     )>, driverBatched: Maybe<(
       { __typename?: 'Driver' }
       & Pick<Driver, 'equipment' | 'emails'>
+      & { districts: Maybe<Array<Maybe<(
+        { __typename?: 'District' }
+        & Pick<District, 'name'>
+      )>>> }
     )> }
   )>>> }
 );
@@ -180,6 +190,9 @@ export const TripsDocument = gql`
     driverBatched {
       equipment
       emails
+      districts {
+        name
+      }
     }
   }
 }

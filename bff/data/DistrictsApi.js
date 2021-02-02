@@ -8,11 +8,11 @@ module.exports = class DistrictsApi extends (
     const allDistricts = await this.post("api/districts/districts/search", {
       params: {},
     });
-    console.log(allDistricts);
-    return ids.map(id => allDistricts.find(district => district.id === id));
+    return ids.map(id => allDistricts.find(district => district.districtId === id));
   });
 
   async getDistricts(ids) {
+    console.log(ids);
     return ids.map(id => this.batchedDistrictLoader.load(id));
   }
 };

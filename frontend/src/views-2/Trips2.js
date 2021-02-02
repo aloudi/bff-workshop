@@ -41,6 +41,7 @@ export function Trips2() {
                 <TableCell>{trip?.collapsedItem?.email}</TableCell>
                 <TableCell>{trip?.driverBatched?.equipment}</TableCell>
                 <TableCell>{trip?.driverBatched?.emails?.join(",")}</TableCell>
+                <TableCell>{trip?.driverBatched?.districts?.map(d => d?.name)?.join(",")}</TableCell>
               </TableRow>
             );
           })}
