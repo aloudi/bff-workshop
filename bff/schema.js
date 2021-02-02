@@ -21,11 +21,17 @@ const typeDefs = gql`
     jobBatched: Job
   }
 
+  type District {
+    id: String,
+    name: String,
+  }
+
   type Driver {
     name: String
     unitId: String
     equipment: String
     emails: [String]
+    districts: [District]
   }
 
   type TripCollapsedItem {
@@ -42,6 +48,7 @@ const typeDefs = gql`
     email: String
     collapsedItem: TripCollapsedItem
     driver: Driver
+    driverBatched: Driver
   }
 
   input Paginate {

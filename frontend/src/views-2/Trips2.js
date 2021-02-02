@@ -39,8 +39,8 @@ export function Trips2() {
                 <TableCell>{trip?.collapsedItem?.status}</TableCell>
                 <TableCell>{trip?.collapsedItem?.tripStart}</TableCell>
                 <TableCell>{trip?.collapsedItem?.email}</TableCell>
-                <TableCell>{trip?.driver?.equipment}</TableCell>
-                <TableCell>{trip?.driver?.emails?.join(",")}</TableCell>
+                <TableCell>{trip?.driverBatched?.equipment}</TableCell>
+                <TableCell>{trip?.driverBatched?.emails?.join(",")}</TableCell>
               </TableRow>
             );
           })}

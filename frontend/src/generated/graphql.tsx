@@ -43,6 +43,7 @@ export type Driver = {
   unitId: Maybe<Scalars['String']>;
   equipment: Maybe<Scalars['String']>;
   emails: Maybe<Array<Maybe<Scalars['String']>>>;
+  districts: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type TripCollapsedItem = {
@@ -61,6 +62,7 @@ export type Trip = {
   email: Maybe<Scalars['String']>;
   collapsedItem: Maybe<TripCollapsedItem>;
   driver: Maybe<Driver>;
+  driverBatched: Maybe<Driver>;
 };
 
 export type Paginate = {
@@ -121,7 +123,7 @@ export type TripsQuery = (
     & { collapsedItem: Maybe<(
       { __typename?: 'TripCollapsedItem' }
       & Pick<TripCollapsedItem, 'id' | 'status' | 'tripStart' | 'email'>
-    )>, driver: Maybe<(
+    )>, driverBatched: Maybe<(
       { __typename?: 'Driver' }
       & Pick<Driver, 'equipment' | 'emails'>
     )> }
@@ -175,7 +177,7 @@ export const TripsDocument = gql`
       tripStart
       email
     }
-    driver {
+    driverBatched {
       equipment
       emails
     }

@@ -5,6 +5,7 @@ const CustomersApi = require("./data/CustomersApi");
 const JobsApi = require("./data/JobsApi");
 const TripsApi = require("./data/TripsApi");
 const DriversApi = require("./data/DriversApi");
+const DistrictsApi = require("./data/DistrictsApi");
 
 const resolvers = {
   Query: {
@@ -38,7 +39,33 @@ const resolvers = {
 
       return null;
     },
+    driverBatched: (source, _arg, { dataSources }) => {
+      if (
+        source &&
+        source.collapsedItem &&
+        source.collapsedItem.assignedToDriver &&
+        source.collapsedItem.assignedToDriver.id
+      ) {
+        return dataSources.driversApi.getDriverBatched(
+          source.collapsedItem.assignedToDriver.id
+        );
+      }
+
+      return null;
+    },
   },
+  Driver: {
+    districts: (source, _arg, { dataSources }) => {
+      if (
+        source &&
+        source.districts &&
+        source.districts.length
+      ) {
+        return dataSources.districtsApi.getDistricts(source.districts)
+      }
+      return null
+    }
+  }
 };
 
 const server = new ApolloServer({
@@ -50,6 +77,7 @@ const server = new ApolloServer({
       jobsApi: new JobsApi(),
       driversApi: new DriversApi(),
       tripsApi: new TripsApi(),
+      districtsApi: new DistrictsApi(),
     };
   },
 });

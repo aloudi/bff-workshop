@@ -7,9 +7,14 @@ query trips($status: [String!]!, $paginate: Paginate!) {
       tripStart
       email
     }
-    driver {
+    driverBatched {
       equipment
       emails
+      districts [
+        {
+          name
+        }
+      ]
     }
   }
 }
